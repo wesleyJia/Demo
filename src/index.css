@@ -1,0 +1,37 @@
+.children-content {
+  z-index: 10;
+  pointer-events: none;
+  position: absolute;
+  top: -250px;
+  left: 50%;
+  transform: translateX(-50%) scale(1.5);
+  width: 600px;
+  height: 400px;
+  opacity: 0.2;
+  filter: blur(69px);
+  will-change: transform;
+  animation-timeline: auto;
+  animation-range-start: normal;
+  animation-range-end: normal;
+  background: linear-gradient(
+      135deg,
+      rgb(114, 46, 209) 0%,
+      rgb(22, 119, 255) 30%,
+      rgb(245, 34, 45) 70%,
+      rgb(19, 194, 194) 100%
+    )
+    0% 0% / 200% 200%;
+  animation: 10s ease 0s infinite normal none running glow;
+}
+
+/* @keyframes glow {
+  0% {
+    background-position: 0 -100%;
+  }
+  50% {
+    background-position: 200% 50%;
+  }
+  100% {
+    background-position: 0 -100%;
+  }
+} */
