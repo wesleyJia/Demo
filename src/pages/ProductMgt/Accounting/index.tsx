@@ -4,12 +4,13 @@ import services from '@/services/demo';
 import {
   ActionType,
   FooterToolbar,
+  ModalForm,
   PageContainer,
   ProDescriptionsItemProps,
   ProTable,
 } from '@ant-design/pro-components';
 import { history } from '@umijs/max';
-import { Button, Divider, message } from 'antd';
+import { Button, Divider, Table, Tag, message } from 'antd';
 import React, { useRef, useState } from 'react';
 
 const { addUser, deleteUser, modifyUser } = services.UserController;
@@ -89,6 +90,57 @@ const TableList: React.FC<unknown> = () => {
   const actionRef = useRef<ActionType>();
 
   const [selectedRowsState, setSelectedRows] = useState<any>([]);
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+
+  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
+    setSelectedRowKeys(newSelectedRowKeys);
+  };
+  const rowSelection = {
+    selectedRowKeys,
+    onChange: onSelectChange,
+  };
+
+  const data1 = [
+    {
+      index: '1111',
+      key1: '部门1',
+      key2: '项目编号1',
+      key3: '2023-01-01',
+      key4: '部门项目1',
+      key5: '运行类',
+      key6: '基建',
+      key7: '10000',
+      key8: '1年',
+      key9: '否',
+      key10: '-',
+    },
+    {
+      index: '2222',
+      key1: '部门2',
+      key2: '项目编号2',
+      key3: '2023-01-01',
+      key4: '部门项目2',
+      key5: '运行类',
+      key6: '基建',
+      key7: '10000',
+      key8: '1年',
+      key9: '否',
+      key10: '-',
+    },
+  ];
+
+  const [selectedData, setSelectedData] = useState([]);
+  const onFinish = () => {
+    const selectedData: any = [];
+    selectedRowKeys.forEach((it: any) => {
+      const a = data1.find((item) => item.index === it);
+      selectedData.push(a);
+    });
+    setSelectedData(selectedData);
+  };
+
   const columns: ProDescriptionsItemProps[] = [
     {
       title: '立项时间',
@@ -126,23 +178,85 @@ const TableList: React.FC<unknown> = () => {
         ],
       },
     },
+    // TODO,弹窗部门项目列表，选择之后回填到输入框中
     {
       title: '项目归类',
       dataIndex: 'key4',
-      formItemProps: {
-        rules: [
-          {
-            required: true,
-            message: '项目名称为必填项',
-          },
-        ],
+      valueType: 'select',
+      fieldProps: {
+        capture: true,
+      },
+      renderFormItem: () => {
+        return (
+          <>
+            {selectedData.map((item: any) => {
+              return <Tag key={item.index}>{item.key2}</Tag>;
+            })}
+            <ModalForm
+              trigger={<Button type="primary">选择</Button>}
+              title="新建表单1"
+              onFinish={async () => {
+                onFinish();
+                return true;
+              }}
+            >
+              <Table
+                rowSelection={rowSelection}
+                rowKey={'index'}
+                columns={[
+                  {
+                    title: '部门名称',
+                    dataIndex: 'key1',
+                  },
+                  {
+                    title: '项目编号',
+                    dataIndex: 'key2',
+                  },
+                  {
+                    title: '立项时间',
+                    dataIndex: 'key3',
+                  },
+                  {
+                    title: '项目名称',
+                    dataIndex: 'key4',
+                  },
+                  {
+                    title: '项目类型',
+                    dataIndex: 'key5',
+                  },
+                  {
+                    title: '项目分类',
+                    dataIndex: 'key6',
+                  },
+                  {
+                    title: '项目总投资',
+                    dataIndex: 'key7',
+                  },
+                  {
+                    title: '项目期限',
+                    dataIndex: 'key8',
+                  },
+                  {
+                    title: '是否验收',
+                    dataIndex: 'key9',
+                  },
+                  {
+                    title: '支出计划',
+                    dataIndex: 'key10',
+                  },
+                ]}
+                dataSource={data1}
+              />
+            </ModalForm>
+          </>
+        );
       },
     },
     {
       title: '项目类型',
       dataIndex: 'key5',
       valueEnum: {
-        0: { text: '运动类', status: '1' },
+        0: { text: '运行类', status: '1' },
         1: { text: '特定目标类', status: '2' },
       },
       formItemProps: {
@@ -190,6 +304,26 @@ const TableList: React.FC<unknown> = () => {
       dataIndex: 'key9',
       formItemProps: {
         rules: [],
+      },
+      renderFormItem: () => {
+        return (
+          <ModalForm
+            trigger={<Button type="primary">新增</Button>}
+            title="新建表单"
+          >
+            <Button type="primary">添加</Button>
+            <Table
+              columns={[
+                { title: '年度', key: 'test1', dataIndex: 'test1' },
+                { title: '金额', key: 'test2', dataIndex: 'test2' },
+              ]}
+              dataSource={[
+                { test1: '2023', test2: '100w' },
+                { test1: '2024', test2: '200w' },
+              ]}
+            />
+          </ModalForm>
+        );
       },
     },
     {

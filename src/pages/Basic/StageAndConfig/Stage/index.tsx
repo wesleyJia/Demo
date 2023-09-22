@@ -94,20 +94,37 @@ const TableList: React.FC<unknown> = () => {
       dataIndex: 'key1',
     },
     {
-      title: '阶段名称',
+      title: '分类',
       dataIndex: 'key2',
+      valueEnum: {
+        0: { text: '事情请示', status: '1' },
+        1: { text: '采购管理', status: '2' },
+        2: { text: '合同管理', status: '3' },
+      },
       formItemProps: {
         rules: [
           {
             required: true,
-            message: '阶段名称为必填项',
+            message: '分类为必填项',
+          },
+        ],
+      },
+    },
+    {
+      title: '名称',
+      dataIndex: 'key3',
+      formItemProps: {
+        rules: [
+          {
+            required: true,
+            message: '名称为必填项',
           },
         ],
       },
     },
     {
       title: '创建时间',
-      dataIndex: 'key3',
+      dataIndex: 'key4',
       formItemProps: {
         rules: [
           {
@@ -161,9 +178,24 @@ const TableList: React.FC<unknown> = () => {
           </Button>,
         ]}
         dataSource={[
-          { key1: '10001', key2: '事前请示', key3: '2023-01-01' },
-          { key1: '10002', key2: '采购管理', key3: '2023-01-01' },
-          { key1: '10003', key2: '合同管理', key3: '2023-01-01' },
+          {
+            key1: '10001',
+            key2: '0',
+            key3: 'xx请示',
+            key4: '2023-01-01',
+          },
+          {
+            key1: '10002',
+            key2: '1',
+            key3: 'xx采购',
+            key4: '2023-01-01',
+          },
+          {
+            key1: '10003',
+            key2: '2',
+            key3: 'xx合同',
+            key4: '2023-01-01',
+          },
         ]}
         columns={columns as any}
         rowSelection={{

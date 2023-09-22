@@ -134,6 +134,11 @@ export default defineConfig({
       path: '/other',
       component: './Other',
     },
+    {
+      name: '资料管理',
+      path: '/files',
+      component: './Files',
+    },
   ],
   npmClient: 'yarn',
 });

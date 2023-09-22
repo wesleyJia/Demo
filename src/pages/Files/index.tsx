@@ -8,7 +8,7 @@ import {
   ProDescriptionsItemProps,
   ProTable,
 } from '@ant-design/pro-components';
-import { Button, Checkbox, message } from 'antd';
+import { Button, message } from 'antd';
 import React, { useRef, useState } from 'react';
 
 const { addUser, deleteUser, modifyUser } = services.UserController;
@@ -86,64 +86,29 @@ const TableList: React.FC<unknown> = () => {
     useState<boolean>(false);
   const [stepFormValues, setStepFormValues] = useState({});
   const actionRef = useRef<ActionType>();
+
   const [selectedRowsState, setSelectedRows] = useState<any>([]);
   const columns: ProDescriptionsItemProps[] = [
     {
-      title: '编号',
+      title: '资料名称',
       dataIndex: 'key1',
     },
     {
-      title: '分类',
+      title: '资料分类',
       dataIndex: 'key2',
-      valueEnum: {
-        0: { text: '事情请示', status: '1' },
-        1: { text: '采购管理', status: '2' },
-        2: { text: '合同管理', status: '3' },
-      },
-      formItemProps: {
-        rules: [
-          {
-            required: true,
-            message: '分类为必填项',
-          },
-        ],
-      },
     },
     {
-      title: '名称',
+      title: '年度',
       dataIndex: 'key3',
-      formItemProps: {
-        rules: [
-          {
-            required: true,
-            message: '名称为必填项',
-          },
-        ],
-      },
     },
-    {
-      title: '创建时间',
-      dataIndex: 'key4',
-      formItemProps: {
-        rules: [
-          {
-            required: true,
-            message: '立项时间为必填项',
-          },
-        ],
-      },
-    },
-
     {
       title: '操作',
       dataIndex: 'option',
       valueType: 'option',
       render: () => (
-        <Checkbox.Group>
-          <Checkbox value={1}>财政</Checkbox>
-          <Checkbox value={2}>内部</Checkbox>
-          <Checkbox value={3}>指标</Checkbox>
-        </Checkbox.Group>
+        <>
+          <a onClick={() => {}}>下载</a>
+        </>
       ),
     },
   ];
@@ -161,33 +126,17 @@ const TableList: React.FC<unknown> = () => {
         search={{
           labelWidth: 120,
         }}
-        toolBarRender={() => [
-          <Button
-            key="1"
-            type="primary"
-            onClick={() => handleModalVisible(true)}
-          >
-            新增阶段定义
-          </Button>,
-        ]}
+        toolBarRender={() => []}
         dataSource={[
           {
-            key1: '10001',
-            key2: '0',
-            key3: 'xx请示',
-            key4: '2023-01-01',
+            key1: '资料1',
+            key2: '资料分类1',
+            key3: '2023',
           },
           {
-            key1: '10002',
-            key2: '1',
-            key3: 'xx采购',
-            key4: '2023-01-01',
-          },
-          {
-            key1: '10003',
-            key2: '2',
-            key3: 'xx合同',
-            key4: '2023-01-01',
+            key1: '资料2',
+            key2: '资料分类2',
+            key3: '2023',
           },
         ]}
         columns={columns as any}

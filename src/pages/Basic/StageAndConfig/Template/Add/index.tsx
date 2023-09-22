@@ -2,6 +2,7 @@ import {
   PageContainer,
   ProCard,
   ProForm,
+  ProFormCascader,
   ProFormList,
   ProFormSelect,
   ProFormText,
@@ -27,12 +28,46 @@ const Page = () => {
           name="name"
           label="模版名称"
         />
-        <ProFormSelect
+        {/* TODO 需要有层级之分 */}
+        <ProFormCascader
           style={{ padding: 0 }}
           width="md"
           name="defined"
           label="阶段定义"
-          options={['事前请示', '采购管理', '合同管理']}
+          fieldProps={{
+            options: [
+              {
+                value: '1',
+                label: '事前请示',
+                children: [
+                  {
+                    value: '1-1',
+                    label: 'xx请示',
+                  },
+                ],
+              },
+              {
+                value: '2',
+                label: '采购管理',
+                children: [
+                  {
+                    value: '2-2',
+                    label: 'xx采购',
+                  },
+                ],
+              },
+              {
+                value: '3',
+                label: '合同管理',
+                children: [
+                  {
+                    value: '3-3',
+                    label: 'xx合同',
+                  },
+                ],
+              },
+            ],
+          }}
         />
         <ProFormList
           name="attributes"

@@ -5,12 +5,13 @@ import services from '@/services/demo';
 import {
   ActionType,
   FooterToolbar,
+  ModalForm,
   PageContainer,
   ProDescriptionsItemProps,
   ProTable,
 } from '@ant-design/pro-components';
 import { history } from '@umijs/max';
-import { Button, Divider, message } from 'antd';
+import { Button, Divider, Table, message } from 'antd';
 import React, { useRef, useState } from 'react';
 
 const { addUser, queryUserList, deleteUser, modifyUser } =
@@ -143,7 +144,7 @@ const TableList: React.FC<unknown> = () => {
       title: '项目类型',
       dataIndex: 'key5',
       valueEnum: {
-        0: { text: '运动类', status: '1' },
+        0: { text: '运行类', status: '1' },
         1: { text: '特定目标类', status: '2' },
       },
       formItemProps: {
@@ -198,6 +199,26 @@ const TableList: React.FC<unknown> = () => {
       dataIndex: 'key10',
       formItemProps: {
         rules: [],
+      },
+      renderFormItem: () => {
+        return (
+          <ModalForm
+            trigger={<Button type="primary">新增</Button>}
+            title="新建表单"
+          >
+            <Button type="primary">添加</Button>
+            <Table
+              columns={[
+                { title: '年度', key: 'test1', dataIndex: 'test1' },
+                { title: '金额', key: 'test2', dataIndex: 'test2' },
+              ]}
+              dataSource={[
+                { test1: '2023', test2: '100w' },
+                { test1: '2024', test2: '200w' },
+              ]}
+            />
+          </ModalForm>
+        );
       },
     },
     {
@@ -256,7 +277,7 @@ const TableList: React.FC<unknown> = () => {
             key1: '部门1',
             key2: '项目编号1',
             key3: '2023-01-01',
-            key4: '项目1',
+            key4: '部门项目1',
             key5: '1',
             key6: '1',
             key7: '10000',
@@ -268,7 +289,7 @@ const TableList: React.FC<unknown> = () => {
             key1: '部门2',
             key2: '项目编号2',
             key3: '2023-01-01',
-            key4: '项目2',
+            key4: '部门项目2',
             key5: '1',
             key6: '1',
             key7: '10000',
