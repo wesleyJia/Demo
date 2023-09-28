@@ -72,11 +72,6 @@ export default defineConfig({
             },
           ],
         },
-        {
-          name: '数据交换规则配置',
-          path: '/basic/data-rules',
-          component: './Basic/DateRules',
-        },
       ],
     },
     {
@@ -111,11 +106,11 @@ export default defineConfig({
       name: '项目业务管理',
       path: '/business-mgt',
       routes: [
-        {
-          name: '总体呈现',
-          path: '/business-mgt/dashboard',
-          component: './BusinessMgt/Dashboard',
-        },
+        // {
+        //   name: '总体呈现',
+        //   path: '/business-mgt/dashboard',
+        //   component: './BusinessMgt/Dashboard',
+        // },
         {
           name: '项目执行管理',
           path: '/business-mgt/do-mgt',
@@ -138,6 +133,11 @@ export default defineConfig({
       name: '资料管理',
       path: '/files',
       component: './Files',
+    },
+    {
+      name: '数据交换规则配置',
+      path: '/data-rules',
+      component: './Basic/DateRules',
     },
   ],
   npmClient: 'yarn',
