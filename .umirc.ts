@@ -17,6 +17,12 @@ export default defineConfig({
     },
     {
       name: '首页',
+      path: '/login',
+      layout: false,
+      component: './Login',
+    },
+    {
+      name: '首页',
       path: '/home',
       component: './Home',
     },
@@ -64,6 +70,12 @@ export default defineConfig({
               hideInMenu: true,
               path: '/basic/mgt/template/add',
               component: './Basic/StageAndConfig/Template/Add',
+            },
+            {
+              name: 'XX模版',
+              hideInMenu: true,
+              path: '/basic/mgt/template/detail',
+              component: './Basic/StageAndConfig/Template/Detail',
             },
             {
               name: '主体设置',

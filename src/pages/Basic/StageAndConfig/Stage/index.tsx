@@ -94,12 +94,13 @@ const TableList: React.FC<unknown> = () => {
       dataIndex: 'key1',
     },
     {
-      title: '分类',
+      title: '阶段分类',
       dataIndex: 'key2',
       valueEnum: {
-        0: { text: '事情请示', status: '1' },
-        1: { text: '采购管理', status: '2' },
-        2: { text: '合同管理', status: '3' },
+        0: { text: '项目评审', status: '1' },
+        1: { text: '事前请示', status: '2' },
+        2: { text: '采购管理', status: '3' },
+        3: { text: '合同管理', status: '4' },
       },
       formItemProps: {
         rules: [
@@ -111,7 +112,7 @@ const TableList: React.FC<unknown> = () => {
       },
     },
     {
-      title: '名称',
+      title: '阶段名称',
       dataIndex: 'key3',
       formItemProps: {
         rules: [
@@ -158,7 +159,7 @@ const TableList: React.FC<unknown> = () => {
   return (
     <PageContainer
       header={{
-        title: '财政项目库管理',
+        title: '阶段定义',
       }}
     >
       <ProTable
@@ -181,18 +182,30 @@ const TableList: React.FC<unknown> = () => {
           {
             key1: '10001',
             key2: '0',
-            key3: 'xx请示',
+            key3: 'xx项目评审',
             key4: '2023-01-01',
           },
           {
             key1: '10002',
             key2: '1',
-            key3: 'xx采购',
+            key3: 'xx事情请示',
             key4: '2023-01-01',
           },
           {
             key1: '10003',
             key2: '2',
+            key3: 'xx采购申请',
+            key4: '2023-01-01',
+          },
+          {
+            key1: '10003',
+            key2: '2',
+            key3: 'xx采购执行',
+            key4: '2023-01-01',
+          },
+          {
+            key1: '10003',
+            key2: '3',
             key3: 'xx合同',
             key4: '2023-01-01',
           },

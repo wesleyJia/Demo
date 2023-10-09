@@ -90,80 +90,71 @@ const TableList: React.FC<unknown> = () => {
   const [selectedRowsState, setSelectedRows] = useState<any>([]);
   const columns: ProDescriptionsItemProps[] = [
     {
-      title: '申请日期',
+      title: 'ID',
       dataIndex: 'key1',
-      valueType: 'date',
-      formItemProps: {
-        rules: [
-          {
-            required: true,
-            message: '申请日期为必填项',
-          },
-        ],
-      },
     },
     {
-      title: '项目名称',
+      title: '阶段名称',
       dataIndex: 'key2',
       formItemProps: {
         rules: [
           {
             required: true,
-            message: '项目名称为必填项',
+            message: '阶段名称为必填项',
           },
         ],
       },
     },
-    {
-      title: '总投资',
-      dataIndex: 'key3',
-      formItemProps: {
-        rules: [
-          {
-            required: true,
-            message: '总投资为必填项',
-          },
-        ],
-      },
-    },
-    {
-      title: '申请部门',
-      dataIndex: 'key4',
-      valueEnum: {
-        0: { text: '部门1', status: 'MALE' },
-        1: { text: '部门2', status: 'FEMALE' },
-      },
-      formItemProps: {
-        rules: [
-          {
-            required: true,
-            message: '项目类型为必填项',
-          },
-        ],
-      },
-    },
-    {
-      title: '申请金额',
-      dataIndex: 'key5',
-      formItemProps: {
-        rules: [],
-      },
-    },
-    {
-      title: '申请标题',
-      dataIndex: 'key6',
-      formItemProps: {
-        rules: [],
-      },
-    },
-    {
-      title: '上传申请表',
-      dataIndex: 'key7',
-      hideInTable: true,
-      formItemProps: {
-        rules: [],
-      },
-    },
+    // {
+    //   title: '总投资',
+    //   dataIndex: 'key3',
+    //   formItemProps: {
+    //     rules: [
+    //       {
+    //         required: true,
+    //         message: '总投资为必填项',
+    //       },
+    //     ],
+    //   },
+    // },
+    // {
+    //   title: '申请部门',
+    //   dataIndex: 'key4',
+    //   valueEnum: {
+    //     0: { text: '部门1', status: 'MALE' },
+    //     1: { text: '部门2', status: 'FEMALE' },
+    //   },
+    //   formItemProps: {
+    //     rules: [
+    //       {
+    //         required: true,
+    //         message: '项目类型为必填项',
+    //       },
+    //     ],
+    //   },
+    // },
+    // {
+    //   title: '申请金额',
+    //   dataIndex: 'key5',
+    //   formItemProps: {
+    //     rules: [],
+    //   },
+    // },
+    // {
+    //   title: '申请标题',
+    //   dataIndex: 'key6',
+    //   formItemProps: {
+    //     rules: [],
+    //   },
+    // },
+    // {
+    //   title: '上传申请表',
+    //   dataIndex: 'key7',
+    //   hideInTable: true,
+    //   formItemProps: {
+    //     rules: [],
+    //   },
+    // },
 
     {
       title: '操作',
@@ -180,6 +171,14 @@ const TableList: React.FC<unknown> = () => {
             修改
           </a>
           <Divider type="vertical" />
+          <a
+            onClick={() => {
+              history.push('/basic/mgt/template/detail');
+            }}
+          >
+            详情
+          </a>
+          <Divider type="vertical" />
           <a href="">删除</a>
         </>
       ),
@@ -189,7 +188,7 @@ const TableList: React.FC<unknown> = () => {
   return (
     <PageContainer
       header={{
-        title: '财政项目库管理',
+        title: '模版配置',
       }}
     >
       <ProTable
@@ -212,7 +211,7 @@ const TableList: React.FC<unknown> = () => {
         ]}
         dataSource={[
           {
-            key1: '2023-01-01',
+            key1: '100001',
             key2: '采购项目1',
             key3: '100w',
             key4: '部门1',
@@ -220,7 +219,7 @@ const TableList: React.FC<unknown> = () => {
             key6: '标题1',
           },
           {
-            key1: '2023-01-01',
+            key1: '100002',
             key2: '采购项目2',
             key3: '100w',
             key4: '部门2',

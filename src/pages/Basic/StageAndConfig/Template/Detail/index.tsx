@@ -37,22 +37,12 @@ const Page = () => {
           fieldProps={{
             options: [
               {
-                value: '0',
-                label: '项目评审',
-                children: [
-                  {
-                    value: '0-1',
-                    label: 'xx项目评审',
-                  },
-                ],
-              },
-              {
                 value: '1',
                 label: '事前请示',
                 children: [
                   {
                     value: '1-1',
-                    label: 'xx事前请示',
+                    label: 'xx请示',
                   },
                 ],
               },
@@ -61,12 +51,8 @@ const Page = () => {
                 label: '采购管理',
                 children: [
                   {
-                    value: '2-1',
-                    label: 'xx采购申请',
-                  },
-                  {
                     value: '2-2',
-                    label: 'xx采购执行',
+                    label: 'xx采购',
                   },
                 ],
               },

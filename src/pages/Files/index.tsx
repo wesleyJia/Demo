@@ -116,7 +116,7 @@ const TableList: React.FC<unknown> = () => {
   return (
     <PageContainer
       header={{
-        title: '财政项目库管理',
+        title: '资料管理',
       }}
     >
       <ProTable
