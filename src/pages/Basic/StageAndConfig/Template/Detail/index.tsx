@@ -9,6 +9,72 @@ import {
 } from '@ant-design/pro-components';
 
 const Page = () => {
+  const formItem = () => {
+    return (
+      <>
+        <ProForm.Item isListField style={{ marginBlockEnd: 0 }} label="名称">
+          <ProFormText style={{ padding: 0 }} width="md" name="name" />
+        </ProForm.Item>
+        <ProForm.Item
+          isListField
+          style={{ marginBlockEnd: 0 }}
+          label="数据类型"
+        >
+          <ProFormSelect
+            style={{ padding: 0 }}
+            options={[
+              {
+                value: 'date',
+                label: '日期',
+              },
+              {
+                value: 'input',
+                label: '输入框',
+              },
+              {
+                value: 'select',
+                label: '下拉框',
+              },
+            ]}
+            width="md"
+            name="type"
+          />
+        </ProForm.Item>
+      </>
+    );
+  };
+
+  const renderSelect = () => {
+    return (
+      <ProForm.Item isListField style={{ marginBlockEnd: 0 }} label="值">
+        <ProFormList
+          name="items"
+          creatorButtonProps={{
+            creatorButtonText: '新建',
+            icon: false,
+            type: 'link',
+            style: { width: 'unset' },
+          }}
+          min={1}
+          copyIconProps={false}
+          deleteIconProps={{ tooltipText: '删除' }}
+          itemRender={({ listDom, action }) => (
+            <div
+              style={{
+                display: 'inline-flex',
+                marginInlineEnd: 25,
+              }}
+            >
+              {listDom}
+              {action}
+            </div>
+          )}
+        >
+          <ProFormText allowClear={false} width="xs" name={['name']} />
+        </ProFormList>
+      </ProForm.Item>
+    );
+  };
   return (
     <PageContainer
       header={{
@@ -77,20 +143,34 @@ const Page = () => {
           }}
           min={1}
           copyIconProps={false}
-          itemRender={({ listDom, action }, { index }) => (
-            <ProCard
-              bordered
-              style={{ marginBlockEnd: 8 }}
-              title={`填写项${index + 1}`}
-              extra={action}
-              bodyStyle={{ paddingBlockEnd: 0 }}
-            >
-              {listDom}
-            </ProCard>
-          )}
-          creatorRecord={{ name: '', items: [{ name: '' }] }}
+          itemRender={({ listDom, action }, listMeta) => {
+            console.log('listDome', listMeta);
+            return (
+              <ProCard
+                bordered
+                style={{ marginBlockEnd: 8 }}
+                title={listMeta.record.name}
+                extra={action}
+                bodyStyle={{ paddingBlockEnd: 0 }}
+              >
+                {/* {listDom} */}
+                {formItem()}
+                {listMeta.record.type === 'select' && renderSelect()}
+              </ProCard>
+            );
+          }}
+          creatorRecord={{ name: '' }}
           initialValue={[
-            { name: '申请日期', items: [{ name: '红' }, { name: '黄' }] },
+            { name: '申请日期', type: 'date' },
+            { name: '项目名称', type: 'input' },
+            { name: '总投资', type: 'input' },
+            {
+              name: '申请部门',
+              type: 'select',
+              items: [{ name: '部门1' }, { name: '部门2' }],
+            },
+            { name: '申请金额', type: 'input' },
+            { name: '申请标题', type: 'input' },
           ]}
         >
           <ProForm.Item isListField style={{ marginBlockEnd: 0 }} label="名称">
@@ -103,13 +183,26 @@ const Page = () => {
           >
             <ProFormSelect
               style={{ padding: 0 }}
-              options={[]}
+              options={[
+                {
+                  value: 'date',
+                  label: '日期',
+                },
+                {
+                  value: 'input',
+                  label: '输入框',
+                },
+                {
+                  value: 'select',
+                  label: '下拉框',
+                },
+              ]}
               width="md"
               name="type"
             />
           </ProForm.Item>
 
-          <ProForm.Item isListField style={{ marginBlockEnd: 0 }} label="值">
+          {/* <ProForm.Item isListField style={{ marginBlockEnd: 0 }} label="值">
             <ProFormList
               name="items"
               creatorButtonProps={{
@@ -135,7 +228,7 @@ const Page = () => {
             >
               <ProFormText allowClear={false} width="xs" name={['name']} />
             </ProFormList>
-          </ProForm.Item>
+          </ProForm.Item> */}
         </ProFormList>
       </ProForm>
     </PageContainer>

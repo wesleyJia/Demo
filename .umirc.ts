@@ -134,6 +134,12 @@ export default defineConfig({
           path: '/business-mgt/approval-preview',
           component: './BusinessMgt/DoMgt/ApprovalAndPreview',
         },
+        {
+          name: '采购计划登记',
+          hideInMenu: true,
+          path: '/business-mgt/purchase',
+          component: './BusinessMgt/DoMgt/Purchase',
+        },
       ],
     },
     {

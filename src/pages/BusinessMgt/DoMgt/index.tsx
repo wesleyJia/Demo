@@ -27,6 +27,9 @@ export default () => {
           title="采购"
           style={{ width: '30%', margin: '10px' }}
           boxShadow
+          onClick={() => {
+            history.push('/business-mgt/purchase');
+          }}
         >
           <div>采购计划登记、采购结果登记</div>
         </ProCard>

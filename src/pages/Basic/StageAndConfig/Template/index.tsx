@@ -212,7 +212,7 @@ const TableList: React.FC<unknown> = () => {
         dataSource={[
           {
             key1: '100001',
-            key2: '采购项目1',
+            key2: '项目评审',
             key3: '100w',
             key4: '部门1',
             key5: '200w',
@@ -220,7 +220,23 @@ const TableList: React.FC<unknown> = () => {
           },
           {
             key1: '100002',
-            key2: '采购项目2',
+            key2: '事前请示',
+            key3: '100w',
+            key4: '部门2',
+            key5: '200w',
+            key6: '标题2',
+          },
+          {
+            key1: '100002',
+            key2: '采购申请',
+            key3: '100w',
+            key4: '部门2',
+            key5: '200w',
+            key6: '标题2',
+          },
+          {
+            key1: '100002',
+            key2: '合同',
             key3: '100w',
             key4: '部门2',
             key5: '200w',
